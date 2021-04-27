@@ -7,6 +7,7 @@ public class ThrowBall : MonoBehaviour
     public GameObject ball;
     public Arrive dogArrive;
     public float throwForce;
+    public AudioSource dogSource;
 
     private void Update()
     {
@@ -28,6 +29,8 @@ public class ThrowBall : MonoBehaviour
 
             //fetch
             dogArrive.targetGameObject = thrown;
+            dogSource.Play();
+
         }
     }
 }

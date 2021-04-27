@@ -591,6 +591,7 @@ MonoBehaviour:
   ball: {fileID: 3627371103750170129, guid: b471fff3b0213bb4882085e357ee2c4e, type: 3}
   dogArrive: {fileID: 1503941571}
   throwForce: 500
+  dogSource: {fileID: 1503941577}
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1003,7 +1004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballCarry: {fileID: 1296423582}
-  dropDist: 2
+  dropDist: 3
 --- !u!4 &1503941576
 Transform:
   m_ObjectHideFlags: 0
