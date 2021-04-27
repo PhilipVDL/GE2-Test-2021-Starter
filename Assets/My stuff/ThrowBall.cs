@@ -24,8 +24,14 @@ public class ThrowBall : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if(thrown != null && thrown.transform.parent == null)
+            {
+                thrown.gameObject.AddComponent<ClearBall>();
+            }
+
             //spawn
             dogState.barked = false;
+            dogState.jumped = false;
             Vector3 inFront = transform.position + transform.forward;
             Quaternion facing = Quaternion.Euler(transform.rotation.eulerAngles);
             thrown = Instantiate(ballPrefab, inFront, facing);

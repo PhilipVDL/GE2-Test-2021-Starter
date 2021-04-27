@@ -7,10 +7,13 @@ public class DogFSM : MonoBehaviour
     Arrive arrive;
     GameObject player;
     ThrowBall throwBall;
-    public bool barked;
+    public bool barked, jumped;
     public GameObject inFront;
     AudioSource source;
     GameObject ballCarry;
+
+    public float jumpHeight, groundHeight, jumpSpeed;
+
 
     public enum State
     {
@@ -60,6 +63,7 @@ public class DogFSM : MonoBehaviour
         if (!barked)
         {
             source.Play();
+            StartCoroutine(Jump());
             barked = true;
         }
         arrive.targetGameObject = throwBall.thrown;
@@ -73,6 +77,31 @@ public class DogFSM : MonoBehaviour
         }
     }
 
+    IEnumerator Jump()
+    {
+        while (true)
+        {
+            if (transform.position.y <= jumpHeight - 0.15f && !jumped)
+            {
+                float jumpY = Mathf.Lerp(transform.position.y, jumpHeight, jumpSpeed);
+                transform.position = new Vector3(transform.position.x, jumpY, transform.position.z);
+            }
+            else
+            {
+                jumped = true;
+                float jumpY = Mathf.Lerp(transform.position.y, groundHeight, jumpSpeed);
+                transform.position = new Vector3(transform.position.x, jumpY, transform.position.z);
+                if (transform.position.y < 0.3)
+                {
+                    transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+                    yield break;
+                }
+            }
+
+            yield return null;
+        }
+    }
+
     void RetrieveBall()
     {
         arrive.targetGameObject = player;
@@ -80,6 +109,11 @@ public class DogFSM : MonoBehaviour
         distance = Vector3.Distance(transform.position, arrive.targetGameObject.transform.position);
         if (distance <= 5)
         {
+            int count = ballCarry.transform.childCount;
+            for(int i = 0; i < count; i++)
+            {
+                ballCarry.transform.GetChild(i).gameObject.AddComponent<ClearBall>(); //helps keep scene clear of too many balls
+            }
             ballCarry.transform.DetachChildren();
             currentState = State.follow;
         }

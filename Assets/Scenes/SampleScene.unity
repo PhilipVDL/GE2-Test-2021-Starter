@@ -989,7 +989,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e275cc0f74d00fa42af79ff512914cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barked: 0
+  jumped: 0
   inFront: {fileID: 1330834424}
+  jumpHeight: 2
+  groundHeight: 0
+  jumpSpeed: 0.2
   currentState: 0
 --- !u!4 &1503941576
 Transform:
