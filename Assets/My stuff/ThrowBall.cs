@@ -5,6 +5,7 @@ using UnityEngine;
 public class ThrowBall : MonoBehaviour
 {
     public GameObject ball;
+    public Arrive dogArrive;
     public float throwForce;
 
     private void Update()
@@ -23,8 +24,10 @@ public class ThrowBall : MonoBehaviour
 
             //throw
             Rigidbody rb = thrown.GetComponent<Rigidbody>();
-
             rb.AddForce(rb.transform.forward * throwForce);
+
+            //fetch
+            dogArrive.targetGameObject = thrown;
         }
     }
 }
