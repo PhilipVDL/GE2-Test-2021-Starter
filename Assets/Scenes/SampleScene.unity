@@ -588,10 +588,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2581e8ae94dd146428eef9d333e35136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 3627371103750170129, guid: b471fff3b0213bb4882085e357ee2c4e, type: 3}
-  dogArrive: {fileID: 1503941571}
+  ballPrefab: {fileID: 3627371103750170129, guid: b471fff3b0213bb4882085e357ee2c4e, type: 3}
+  thrown: {fileID: 0}
   throwForce: 500
-  dogSource: {fileID: 1503941577}
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,9 +648,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 0
-  sine: 0
-  defaultRot: {x: 0, y: 0, z: 0, w: 0}
-  wag: {x: 0, y: 0, z: 0}
   speed: 2
   maxRot: 45
 --- !u!1 &1296423582
@@ -932,15 +928,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1503941576}
-  - component: {fileID: 1503941574}
   - component: {fileID: 1503941573}
   - component: {fileID: 1503941571}
-  - component: {fileID: 1503941572}
-  - component: {fileID: 1503941575}
+  - component: {fileID: 1503941574}
   - component: {fileID: 1503941577}
   m_Layer: 0
   m_Name: dog
-  m_TagString: Untagged
+  m_TagString: Dog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -962,21 +956,7 @@ MonoBehaviour:
   boid: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   slowingDistance: 5
-  targetGameObject: {fileID: 1330834424}
---- !u!114 &1503941572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503941570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fca7009e1a4f0f43a8f9afbcd4030f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickDist: 2
-  ballCarry: {fileID: 1296423582}
+  targetGameObject: {fileID: 0}
 --- !u!114 &1503941573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1006,24 +986,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1503941570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd1e70df60db186419c47ae907466a95, type: 3}
+  m_Script: {fileID: 11500000, guid: e275cc0f74d00fa42af79ff512914cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updatesPerSecond: 5
---- !u!114 &1503941575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1503941570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad54d9585fcd3c8429dba569a534d583, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballCarry: {fileID: 1296423582}
-  dropDist: 3
+  inFront: {fileID: 1330834424}
+  currentState: 0
 --- !u!4 &1503941576
 Transform:
   m_ObjectHideFlags: 0

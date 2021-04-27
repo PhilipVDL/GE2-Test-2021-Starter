@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class ThrowBall : MonoBehaviour
 {
-    public GameObject ball;
-    public Arrive dogArrive;
+    public GameObject ballPrefab;
+    public GameObject thrown;
     public float throwForce;
-    public AudioSource dogSource;
+
+    DogFSM dogState;
+
+    private void Start()
+    {
+        dogState = GameObject.FindGameObjectWithTag("Dog").GetComponent<DogFSM>();
+    }
 
     private void Update()
     {
@@ -19,18 +25,17 @@ public class ThrowBall : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             //spawn
+            dogState.barked = false;
             Vector3 inFront = transform.position + transform.forward;
             Quaternion facing = Quaternion.Euler(transform.rotation.eulerAngles);
-            GameObject thrown = Instantiate(ball, inFront, facing);
+            thrown = Instantiate(ballPrefab, inFront, facing);
 
             //throw
             Rigidbody rb = thrown.GetComponent<Rigidbody>();
             rb.AddForce(rb.transform.forward * throwForce);
 
             //fetch
-            dogArrive.targetGameObject = thrown;
-            dogSource.Play();
-
+            dogState.SetState("fetch");
         }
     }
 }
